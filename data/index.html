@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Water Tracker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="jquery-3.4.1.js"></script>
+        <script type="text/javascript" src="Chart.min.js"></script>
+    </head>
+    <body>
+        <div class="ui">
+            <img id="bg" src="bg.jpg"/>
+            <div id="settings"><div></div><div></div><div></div></div>
+            <div id="toplabel"><span id="residence">%RESIDENCE%</span>'s <br> Residence</div>
+            <div id="overview">
+                <div id="inner">
+                    <span > Total Water Consumption:</span>
+                    <div id="totalwater"><span id="flowLitersVal">%FREQ%</span><span class="unit">liters</span></div>
+                    <div id="innerContainer">
+                        <span > Current Flow Rate:</span>
+                        <div id="flowrate"><span id="flowRateVal">%RATE%</span><span class="unit">L/min</span></div>
+                        <div class="wrapper">
+                        <span> Hourly Flow Rates: </span>
+                        <a id="downloadJson">Download</a>
+                        </div>
+                        <canvas id="flowChart"></canvas>
+
+                    </div>
+                </div>
+            </div>
+            <div id="misc">
+                <div class="visible">
+                    <div class='uptime'>
+                        <div class='label'>This device has been running for</div>
+                        <div class="placeholder"><span id="uptimeValue">%MILLIS%</span> <span id='uptimeUnit'>milliseconds</span></div>  
+                    </div>
+                    <div class="con">
+                        <img id="check" src="check.png"/> 
+                        <img id="crossmark" src="x.png"/> 
+                    </div>
+                </div>
+                <div id="innerContainer2" style="padding:10px 20px;">
+                    <div class="estimatedCost">
+                        <h4>Estimated Cost:</h4>
+                        <p> The device's current cost estimation is P
+                            <span id="estimatedCostVal">00.00</span>
+                             with a rate of P<span id="rateVal">25</span> per cubic meter.</p>
+                    </div>
+                    <div class="limit">
+                        <h4>Limit:</h4>
+                        <p> The threshold set by the user is <span id="limitMiscVal">270</span> Liters.</p>
+                    </div>
+                    <div class="connection">
+                        <h4> Access Point Details:</h4>
+                        <table class="apdetails">
+                            <tr>
+                                <th align="left"> Service Set ID </th>
+                                <th align="left"> IP Address </th >
+                            </tr>
+                            <tr>
+                                <td id="ssidVal">%SSID%</td>
+                                <td id="ipAddr">%IP%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar">
+                <div class="container">
+                    <button id="restartButton"><img src="restart.png"/></button>
+                    <div id="valveButton">%VALVE%</div>
+                    <button id="refreshButton"><img src="refresh.png"/></button>
+                </div>
+            </div>
+            <div id="settingContainer">
+                <h4 >Settings:</h4>
+                <div id="limitContainer">
+                    <span class="settingLabel">LIMIT</span>
+                    <div><input id="limitInput" type="number" value=270 /><span>L</span></div>
+                    <label class="toggle" id="limitToggle"> 
+                        <input type="checkbox" checked>
+                        <span class="slider"></span >
+                    </label>
+                </div>
+                <div id="costContainer">
+                    <span class="settingLabel">RATE</span>
+                    <div><span>P</span><input id="costInput" type="number" value=25 /><span class="label">per Liter</span class="label"></div>
+                </div>
+                <div id="confirmModal">
+                    <div class="container">
+                        <h5>Do you wish to change limit threshold?</h5>
+                        <div  >
+                            <button id="yes">Yes</button>
+                            <button id="no">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript" src="chart.js"></script>
+            <script type="text/javascript" src="script.js"></script>
+        </div>
+    </body>
+    <span style="display:none" id="limitPlaceholder">%LIMIT%</span>
+</html>

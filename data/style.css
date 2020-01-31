@@ -1,0 +1,446 @@
+@font-face{
+    font-family: "Oxygen";
+    src: url('Oxygen-Bold.ttf') format('truetype')
+}
+@font-face{
+    font-family: "Montserrat";
+    src: url('Montserrat-Regular.ttf') format('truetype')
+}
+@font-face{
+    font-family: "Lato";
+    src: url('Lato-Regular.ttf') format('truetype')
+}
+body,html{
+    padding:0;
+    height:100%;
+    width:100%;
+    margin:0;  
+    color:white; 
+    font-family: "Lato";
+}
+*:focus{outline:none}
+.ui{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+.ui > #bg{
+    height:100%;
+    width:100%;
+    position:fixed;
+    z-index:-1;
+    transition: .5s;
+    transform: scale(1.2,1.2);
+}
+#bg.transition{
+    transform: scale(1,1);
+    
+}
+#toplabel{
+    font-family: "Oxygen";
+    position:relative;
+    top:40px;
+    left:20px;
+    font-size:250%;
+    color: white;
+}
+#overview{
+    backdrop-filter: blur(2px);
+    background-color:rgba(34,49,63,0.9);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height:70%;width:100%;
+    position:fixed;
+    left:0%;top:0;
+    transform:translateY(72%);
+    transition: .5s;
+}
+#overview > #inner{
+    padding-left:20px;
+    padding-top: 10px;
+}
+#totalwater{
+    font-size:300%;
+    margin: 2.5%;
+    text-align:center;
+}
+#flowrate{
+    font-size:200%;
+    margin: 2.5%;
+    text-align:center;
+}
+#overview.view,#misc.view{
+    transform:translateY(45px);
+}
+#misc{
+    background-color:white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height:90%;
+    width:100%;
+    position:fixed;
+    left:0%;top:0;
+    transform:translateY(75%);
+    transition: .5s;
+}
+#settings{
+    position:fixed;
+    right:10px;
+    top:10px;
+    height:40px;
+    width:40px;
+    display:flex;
+    justify-content: space-evenly;
+    transition:.5s;
+    cursor:pointer;
+}
+#settings>div{
+    margin-top: 40%;
+    border-radius: 5px;
+    background-color: white;
+    height:8px;
+    width:8px;
+}
+#settings.reverse{
+    transform:rotateY(180deg)
+}
+#settingContainer{
+    height:100%;
+    width:100%;
+    position:fixed;
+    left:0;top:45px;
+    background-color:white;
+    display:none;
+    color:black;
+    font-size: 150%;
+    font-family: "Oxygen";
+}
+.unit{
+    margin-left:20px;
+    font-size:70%;
+}
+#innerContainer,#innerContainer2{
+    width:95%;
+    display:none;
+}
+#misc>.visible{
+    display:flex;
+    padding:10px 20px;
+    justify-content: space-between;
+    color:black;
+}
+.cost{
+    width:52.5%;
+}
+.uptime>.label{
+    font-size: 100%;
+    
+    font-weight: bolder;
+    width:100%;
+    height:15px;
+}
+.uptime>.placeholder{
+    font-size: 170%;
+    font-family: "Oxygen";
+    font-weight: bolder;
+    width:100%;
+    height:40px;
+}
+.con{
+    width:50px;
+    height:50px;
+    background-color: white;
+    border: 5px solid red;
+    
+    color:red;
+    border-radius: 15px;
+    text-align: center;
+    font-size:290%;
+    line-height: 115%;
+}
+.con >img{
+    height:100%;
+    display:none;
+}
+.toolbar{
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    background-color: white;
+    height:20%;
+    width:100%;
+}
+.toolbar > .container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    height:80%;
+}
+.toolbar > .container >button{
+    height:60%;
+    width:20%;
+    padding:0;
+    background-color: transparent;
+    border:none;
+}
+.toolbar >.container > button >img{
+    height:100%;
+}
+.toolbar > .container >#valveButton{
+    height:60%;
+    font-family: "Oxygen";
+    width:20%;
+    background-color:white;
+    border-radius: 50%;
+    border: 15px solid gray;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 190%;
+    color:gray;
+    font-size:200%;
+    cursor:pointer;
+    transition: .5s;
+}
+#restartButton.active img,#refreshButton.active img{
+    transform: rotateZ(360deg);
+    transition: transform 3s;
+    filter: invert(61%) sepia(62%) saturate(5718%) hue-rotate(160deg) brightness(90%) contrast(90%);
+}
+.estimatedCost, .limit{
+    color:black;
+}
+.estimatedCost>h4, .limit > h4,.connection>h4{
+    
+    font-weight: bolder;
+}
+.estimatedCost>p, .limit > p {
+    text-indent: 40px;
+}
+.connection{
+    color:black;
+    margin:auto;
+}
+.apdetails{
+    color:gray;
+    width: 80%;
+    border-collapse:collapse;
+    margin-left:6%;
+}
+.apdetails td{
+    padding:5%;
+    color:black;
+    font-weight: bolder;
+
+    font-family: "Oxygen";
+    border:2px solid gray;
+}
+#limitContainer {
+    height: 8%;
+    margin-left: 40px;
+    width:80%;
+    display: flex;
+    justify-content: space-between;
+    color:black;
+    align-items: center;;
+    margin-bottom:10px;
+    transition:1s;
+}
+#limitContainer div {
+    border:1px solid gray;
+    height:100%;
+    width:30%;
+    display:flex;
+    align-items: center;
+    color:gray;
+    transition:color 1s, border-color 1s;
+
+}
+#limitContainer div.inputActive{
+    border-color:black;
+    color:black;
+}
+#limitContainer.limitInactive{
+    color:gray;
+}
+#limitContainer.limitInactive div{
+    border-color:gray;
+    color:gray;
+    background-color: lightgray;;
+}
+#limitContainer div input{
+    padding: .5% 2%;
+    height: 90%;
+    width:80%;
+    text-align: center;
+    font-family: "Lato";
+    font-size:130%;
+    border:none;
+}
+#limitContainer div input:disabled{
+    background-color:transparent;
+}
+label.toggle{
+    position: relative;
+    display: inline-block;
+    width: 15%;
+    height: 40%;
+}
+label.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 76%;
+    width: 40%;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color:rgba(34,49,63,0.9);;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px rgba(34,49,63,0.9);;
+}
+
+input:checked + .slider:before {
+    transform: translateX(95%);
+}
+
+#confirmModal{
+    height:30%;
+    width:80%;
+    border:1px solid black;
+    background-color: white;
+    position:fixed;
+    display: none;
+    left:10%;
+    top:30%;
+}
+#confirmModal .container{
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#confirmModal .container div button{
+    height:100%;
+    width:30%;
+    border: none;
+}
+#confirmModal .container div button#yes{
+    background-color: #0d98ba;
+}
+#confirmModal .container div{
+    height:25%;width:80%;display:flex;justify-content: space-between;
+}
+#confirmModal .container h5{
+    padding:0;margin:0;text-align: center;
+}
+#settingContainer h4{
+    padding:0;margin-left: 20px;margin-top:20px;margin-bottom:10px;
+}
+
+
+#costContainer {
+    height: 8%;
+    margin-left: 40px;
+    width:80%;
+    display: flex;
+    justify-content: space-between;
+    color:black;
+    align-items: center;;
+    transition:1s;
+}
+#costContainer div {
+    border:1px solid gray;
+    height:100%;
+    width:61%;
+    display:flex;
+    align-items: center;
+    color:gray;
+    transition:color 1s, border-color 1s;
+
+}
+#costContainer div.inputActive{
+    border-color:black;
+    color:black;
+}
+#costContainer.limitInactive{
+    color:gray;
+}
+#costContainer.limitInactive div{
+    border-color:gray;
+    color:gray;
+    background-color: lightgray;;
+}
+#costContainer div input{
+    padding: .5% 2%;
+    height: 90%;
+    width:80%;
+    text-align: center;
+    font-family: "Lato";
+    font-size:130%;
+    border:none;
+}
+#costContainer div input:disabled{
+    background-color:transparent;
+}
+
+#innerContainer2 p{
+    width:95%;
+}
+#settingLabel{
+    width:30%;
+}
+#costContainer div span.label{
+    font-size:60%
+}
+.wrapper{
+    display:flex;
+    justify-content: space-between;
+}
+.wrapper a{
+    height:10%;
+    width:30%;
+    text-decoration: none;
+    border:none;
+    border: 3px solid #0d98ba;
+    background-color: transparent;
+    color: #0d98ba;
+    font-family: "Oxygen";
+    border-radius:25%/50%;
+    padding:1.5% 2%;s
+    font-size:80%;
+    text-align:center;
+    transition:background-color 1s,color 1s;
+}
+.wrapper a.active{
+    background-color: #0d98ba;
+    color: black;
+}
